@@ -45,6 +45,8 @@ class BidGPTChatbot {
                     stopButton.addEventListener('click', () => this.handleStopBot());
                 }
             }, 0);
+            // Ensure feedback modal is hidden on load
+            document.getElementById('feedbackModal').classList.add('hidden');
         } catch (error) {
             console.error('Error initializing Pinecone:', error);
             // Show error to user
