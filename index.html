@@ -4,19 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BidAlert - BidGPT Chatbot</title>
-    <!-- Replace CDN with local Tailwind -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-    <!-- Add Pinecone SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@pinecone-database/pinecone@1.1.2/dist/pinecone.min.js"></script>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Add error handling for Pinecone SDK
-        window.addEventListener('error', function(e) {
-            if (e.filename && e.filename.includes('pinecone')) {
-                console.error('Pinecone SDK Error:', e.message);
-            }
-        });
-        
         tailwind.config = {
             theme: {
                 extend: {
@@ -30,6 +21,16 @@
             }
         }
     </script>
+    
+    <!-- Load styles -->
+    <link href="style.css" rel="stylesheet">
+    
+    <!-- Load Pinecone SDK -->
+    <script src="https://unpkg.com/@pinecone-database/pinecone@1.1.2/dist/pinecone.browser.js"></script>
+    
+    <!-- Load other dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
 </head>
 <body class="bg-gray-50 font-sans">
     <!-- Floating Chat Button -->
@@ -220,7 +221,7 @@
     </div>
 
     <script src="app.js"></script>
-    <!-- Add Pinecone chat integration -->
+    <!-- Load our chat implementation last -->
     <script src="pinecone-chat.js"></script>
 
   <!-- ✅ Markdown Rendering Support -->

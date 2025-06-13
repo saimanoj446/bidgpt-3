@@ -21,15 +21,17 @@ class BidGPTChatbot {
     async init() {
         try {
             console.log('Initializing Pinecone...');
-            // Initialize Pinecone
-            this.pc = new Pinecone({
+            
+            // Initialize Pinecone with browser version
+            const pinecone = new window.Pinecone({
                 apiKey: this.apiKey,
                 environment: 'gcp-starter'
             });
             
             console.log('Pinecone initialized, creating assistant...');
+            
             // Initialize the assistant
-            this.assistant = await this.pc.assistant.create({
+            this.assistant = await pinecone.assistant.create({
                 name: this.assistantName
             });
             
