@@ -18,23 +18,29 @@ class BidGPTChatbot {
     }
 
     async init() {
-        // Initialize Pinecone
-        this.pc = new Pinecone({
-            apiKey: this.apiKey
-        });
-        
-        this.assistant = this.pc.assistant.Assistant({
-            assistant_name: this.assistantName
-        });
+        try {
+            // Initialize Pinecone
+            this.pc = new Pinecone({
+                apiKey: this.apiKey,
+                environment: 'gcp-starter'  // Add your environment
+            });
+            
+            // Initialize the assistant
+            this.assistant = await this.pc.assistant.create({
+                name: this.assistantName
+            });
 
-        this.bindEvents();
-        // Add stop button event listener after DOM is loaded
-        setTimeout(() => {
-            const stopButton = document.getElementById('stopBotResponse');
-            if (stopButton) {
-                stopButton.addEventListener('click', () => this.handleStopBot());
-            }
-        }, 0);
+            this.bindEvents();
+            // Add stop button event listener after DOM is loaded
+            setTimeout(() => {
+                const stopButton = document.getElementById('stopBotResponse');
+                if (stopButton) {
+                    stopButton.addEventListener('click', () => this.handleStopBot());
+                }
+            }, 0);
+        } catch (error) {
+            console.error('Error initializing Pinecone:', error);
+        }
     }
 
     renderMarkdown(text) {
