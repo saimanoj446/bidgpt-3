@@ -23,7 +23,7 @@ class BidGPTChatbot {
             console.log('Initializing Pinecone...');
             
             // Initialize Pinecone with browser version
-            const pinecone = new window.Pinecone({
+            const pinecone = new PineconeClient({
                 apiKey: this.apiKey,
                 environment: 'gcp-starter'
             });
