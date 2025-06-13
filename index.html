@@ -9,10 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     
-    <!-- Load Pinecone SDK -->
-    <script src="https://unpkg.com/@pinecone-database/pinecone@1.1.2/dist/pinecone.browser.min.js"></script>
-    
-    <!-- Load other dependencies -->
+    <!-- Load dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
 </head>
@@ -205,12 +202,8 @@
     </div>
 
     <script src="app.js"></script>
-    <!-- Load our chat implementation last -->
+    <!-- Load Pinecone SDK and our chat script at the end of body -->
+    <script src="https://unpkg.com/@pinecone-database/pinecone@1.1.2/dist/pinecone.browser.js"></script>
     <script src="pinecone-chat.js"></script>
-
-  <!-- ✅ Markdown Rendering Support -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
-
 </body>
 </html>
