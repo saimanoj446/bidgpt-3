@@ -1,8 +1,8 @@
 // BidGPT Chatbot with Pinecone Integration
 class BidGPTChatbot {
     constructor(apiKey, assistantName) {
-        this.apiKey = apiKey || process.env.PINECONE_API_KEY;
-        this.assistantName = assistantName;
+        this.apiKey = apiKey || 'pcsk_4tuTEE_4z7sMfZY3Trjqwq6gYEn1aR7DLcB5punbFEbsgPFo1k4Lex4uYv8EmSXinYvU1X';
+        this.assistantName = assistantName || 'bidgpt';
         this.isOpen = false;
         this.isFeedbackModalOpen = false;
         this.messages = [];
@@ -19,16 +19,20 @@ class BidGPTChatbot {
 
     async init() {
         try {
+            console.log('Initializing Pinecone...');
             // Initialize Pinecone
             this.pc = new Pinecone({
                 apiKey: this.apiKey,
-                environment: 'gcp-starter'  // Add your environment
+                environment: 'gcp-starter'
             });
             
+            console.log('Pinecone initialized, creating assistant...');
             // Initialize the assistant
             this.assistant = await this.pc.assistant.create({
                 name: this.assistantName
             });
+            
+            console.log('Assistant created successfully');
 
             this.bindEvents();
             // Add stop button event listener after DOM is loaded
@@ -40,6 +44,8 @@ class BidGPTChatbot {
             }, 0);
         } catch (error) {
             console.error('Error initializing Pinecone:', error);
+            // Show error to user
+            this.showNotification('Failed to initialize chat. Please refresh the page.', 'error');
         }
     }
 
@@ -310,6 +316,7 @@ class BidGPTChatbot {
             this.isBotResponding = true;
             this.stopRequested = false;
             
+            console.log('Sending message to Pinecone...');
             const msg = {
                 content: message
             };
@@ -319,6 +326,7 @@ class BidGPTChatbot {
             // Get streaming response from Pinecone
             const chunks = await this.assistant.chat(messages=[msg], stream=true);
             
+            console.log('Got response from Pinecone, processing chunks...');
             for await (const chunk of chunks) {
                 if (this.stopRequested) break;
                 if (chunk) {
@@ -338,8 +346,8 @@ class BidGPTChatbot {
                 this.addBotMessage(fullResponse);
             }
         } catch (error) {
-            console.error('Error:', error);
-            this.addBotMessage('Sorry, there was an error processing your request.');
+            console.error('Error sending message:', error);
+            this.addBotMessage('Sorry, there was an error processing your request. Please try again.');
         } finally {
             this.isBotResponding = false;
             this.hideTypingIndicator();
