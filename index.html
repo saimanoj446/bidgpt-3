@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BidAlert - BidGPT Chatbot</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Replace CDN with local Tailwind -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <!-- Add Pinecone SDK -->
-    <script src="https://unpkg.com/@pinecone-database/pinecone@1.1.2/dist/pinecone.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@pinecone-database/pinecone@1.1.2/dist/pinecone.min.js"></script>
     <script>
         // Add error handling for Pinecone SDK
         window.addEventListener('error', function(e) {
@@ -45,7 +46,7 @@
             <div class="relative bg-chat-blue hover:bg-[#001745] transition-all duration-300 rounded-full p-4 shadow-lg hover:shadow-xl transform hover:scale-105">
                 <!-- Robot Icon -->
                 <div class="w-10 h-10 text-white flex items-center justify-center">
-                    <img src="logo.png" alt="Chat Icon" class="w-full h-full object-fit" />
+                    <img src="assets/logo.png" alt="Chat Icon" class="w-full h-full object-fit" />
                 </div>
             </div>
         </div>
@@ -66,7 +67,7 @@
             <div class="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-chat-blue to-chat-blue-light text-white rounded-t-2xl md:rounded-t-2xl">
                 <div class="flex items-center gap-3">
                     <div class="w-14 h-14 bg-none bg-opacity-100 rounded-full flex items-center justify-center">
-                       <img src="logo.png" alt="Chat Icon" class="w-full h-full object-fit" />
+                       <img src="assets/logo.png" alt="Chat Icon" class="w-full h-full object-fit" />
                     </div>
                     <div>
                         <h3 class="font-semibold text-lg">BidGPT</h3>
@@ -90,7 +91,7 @@
                 <!-- Welcome Message -->
                 <div class="flex gap-3">
                     <div class="w-10 h-10 bg-none rounded-full flex items-center justify-center flex-shrink-0">
-                        <img src="logo.png" alt="Chat Icon" class="w-full h-full object-fit" />
+                        <img src="assets/logo.png" alt="Chat Icon" class="w-full h-full object-fit" />
                     </div>
                     <div class="bg-white rounded-lg rounded-tl-none p-3 shadow-sm max-w-xs">
                         <p class="text-gray-800">Hello! How can I assist you today?</p>
@@ -132,7 +133,7 @@
                 <!-- Typing Indicator (Hidden by default) -->
                 <div id="typingIndicator" class="flex gap-3 hidden">
                     <div class="w-8 h-8 bg-none rounded-full flex items-center justify-center flex-shrink-0">
-                        <img src="logo.png" alt="Chat Icon" class="w-full h-full object-fit" />
+                        <img src="assets/logo.png" alt="Chat Icon" class="w-full h-full object-fit" />
                     </div>
                     <div class="bg-white rounded-lg rounded-tl-none p-3 shadow-sm">
                         <div class="flex items-center gap-1">

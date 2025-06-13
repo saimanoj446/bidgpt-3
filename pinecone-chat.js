@@ -1,8 +1,9 @@
 // BidGPT Chatbot with Pinecone Integration
 class BidGPTChatbot {
-    constructor(apiKey, assistantName) {
-        this.apiKey = apiKey || 'pcsk_4tuTEE_4z7sMfZY3Trjqwq6gYEn1aR7DLcB5punbFEbsgPFo1k4Lex4uYv8EmSXinYvU1X';
-        this.assistantName = assistantName || 'bidgpt';
+    constructor() {
+        // Hardcode the API key and assistant name
+        this.apiKey = 'pcsk_4tuTEE_4z7sMfZY3Trjqwq6gYEn1aR7DLcB5punbFEbsgPFo1k4Lex4uYv8EmSXinYvU1X';
+        this.assistantName = 'bidgpt';
         this.isOpen = false;
         this.isFeedbackModalOpen = false;
         this.messages = [];
@@ -432,6 +433,6 @@ class BidGPTChatbot {
 
 // Initialize chat when document is ready
 document.addEventListener('DOMContentLoaded', async () => {
-    const chatbot = new BidGPTChatbot(null, 'bidgpt');
+    const chatbot = new BidGPTChatbot();
     await chatbot.init();
 }); 
